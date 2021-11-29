@@ -43,10 +43,13 @@ end
         [~, vel1] = get_pos_vel(t+dt,t_step,idx);
         acc = (vel1-vel)/dt;
     end
-    
-yaw = 0;
-yawdot = 0;
-
+try   
+    yaw = atan2(y(idx)-pos(2),x(idx)-pos(1));
+    yawdot = 0.1*yaw*dt;
+catch
+    yaw = 0;
+    yawdot = 0;
+end
 % =================== Your code ends here ===================
 
 desired_state.pos = pos(:);
